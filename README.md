@@ -1,27 +1,24 @@
-OpenStreetMap Hall Monitor
+OpenStreetMap Diff Tool
 ==========================
 
-This module is a passive changeset monitoring tool for use with OpenStreetMap.
+This module is an analysis tool for use with OpenStreetMap diff files (`*.osc`). These files are available at http://planet.openstreetmap.org/replication for anyone to download either in real time or after thef act.
 
-To begin use, simply call `import osmhm` after installation.
+To begin use, simply call `import osmdt` after installation.
 
 Sample calls available for now:
 
 ```
-import osmhm
+import osmdt
 
-data = osmhm.fetchThis('25866')  # Retrieves the 000/025/866 diff
-differenceObject = osmhm.diffUtil(data)  # Parse the data stream
-changesets = osmhm.extract_changesets(differenceObject) # Extract changeset information
-users = osmhm.extract_users(differenceObject) # Extract user information
-objects = osmhm.extract_objects(differenceObject) # Extract object information
+data = osmdt.fetch('25866')  # Retrieves the 000/025/866 diff
+differenceObject = osmdt.process(data)  # Parse the data stream
+changesets = osmdt.extract_changesets(differenceObject) # Extract changeset information
+users = osmdt.extract_users(differenceObject) # Extract user information
+objects = osmdt.extract_objects(differenceObject) # Extract object information
 
 userInfo = {}
 for changeset in changesets.iteritems():
-    userInfo[changeset] = osmhm.userUtil(changeset['uid'])  # Retrieves user information 
+    userInfo[changeset] = osmdt.userUtil(changeset['uid'])  # Retrieves user information 
 
 ```
 
-More information will be coming soon and the tool will continue to be improved, including the option to remove the dependency on psycopg2 and a postgres database to store everything.
-
-If you are interested in helping with development and want to discuss things "big picture", please [contact me](mailto:ethan-nelson@users.noreply.github.com).

@@ -1,7 +1,7 @@
 import xml.etree.cElementTree as ElementTree
 
 
-def diffUtil(dataStream):
+def process(dataStream):
     def parseDiff(source, handle):
         for event, elem in ElementTree.iterparse(source,
                                                  events=('start', 'end')):
