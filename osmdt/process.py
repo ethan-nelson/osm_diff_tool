@@ -1,17 +1,18 @@
-import xml.etree.cElementTree as ElementTree
+def process(data_stream):
+    """
+    """
+    import xml.etree.cElementTree as ElementTree
 
-
-def process(dataStream):
-    def parseDiff(source, handle):
+    def parse_diff(source, handle):
         for event, elem in ElementTree.iterparse(source,
                                                  events=('start', 'end')):
             if event == 'start':
-                handle.startElement(elem.tag, elem.attrib)
+                handle.start_element(elem.tag, elem.attrib)
             elif event == 'end':
-                handle.endElement(elem.tag)
+                handle.end_element(elem.tag)
             elem.clear()
 
-    class OSCDecoder():
+    class osc_decoder():
         def __init__(self):
             self.changes = {}
             self.nodes = {}
@@ -21,7 +22,7 @@ def process(dataStream):
             self.primitive = {}
             self.missingNds = set()
 
-        def startElement(self, name, attributes):
+        def start_element(self, name, attributes):
             if name in ('modify', 'delete', 'create'):
                 self.action = name
             if name in ('node', 'way', 'relation'):
@@ -56,7 +57,7 @@ def process(dataStream):
                     'ref': attributes['ref']
                 })
 
-        def endElement(self, name):
+        def end_element(self, name):
             if name == 'node':
                 self.nodes[self.primitive['id']] = self.primitive
             elif name == 'way':
@@ -66,7 +67,7 @@ def process(dataStream):
             if name in ('node', 'way', 'relation'):
                 self.primitive = {}
 
-    dataObject = OSCDecoder()
-    parseDiff(dataStream, dataObject)
+    data_object = osc_decoder()
+    parse_diff(data_stream, data_object)
 
-    return dataObject
+    return data_object

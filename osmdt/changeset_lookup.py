@@ -1,24 +1,25 @@
-import requests
-import StringIO
-import xml.etree.cElementTree as ElementTree
+def changeset_lookup(changeset_id):
+    """
+    """
+    import requests
+    import StringIO
+    import xml.etree.cElementTree as ElementTree
 
-
-def changesetUtil(changeset_id):
-    def parseUser(source, handle):
+    def parse_user(source, handle):
         for event, elem in ElementTree.iterparse(source,
                                                  events=('start','end')):
             if event == 'start':
-                handle.startElement(elem.tag, elem.attrib)
+                handle.start_element(elem.tag, elem.attrib)
             elem.clear()
 
-    class userDecoder():
+    class user_decoder():
         def __init__(self):
             self.creation = ""
             self.changesets = 0
             self.blocks = 0
             self.active = 0
 
-        def startElement(self, name, attributes):
+        def start_element(self, name, attributes):
             if name == 'tag':
                 for attribute in attributes:
                     if attribute == 'comment':
@@ -29,17 +30,14 @@ def changesetUtil(changeset_id):
                 self.blocks = int(attributes['count'])
                 self.active = int(attributes['active'])
 
-    try:
-        url = 'http://www.osm.org/api/0.6/changeset/' + str(changeset_id)
+    url = 'http://www.osm.org/api/0.6/changeset/' + str(changeset_id)
 
-        content = requests.get(url)
-        if content.status_code == 404:
-            raise Exception
+    content = requests.get(url)
+    if content.status_code == 404:
+        raise EnvironmentError('Changeset cannot be found.')
 
-        content = StringIO.StringIO(content.content)
+    content = StringIO.StringIO(content.content)
 
-        dataObject = userDecoder()
-        parseUser(content, dataObject)
-        return dataObject
-    except:
-        return None
+    data_object = user_decoder()
+    parse_user(content, data_object)
+    return data_object
