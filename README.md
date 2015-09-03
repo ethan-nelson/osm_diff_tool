@@ -8,10 +8,16 @@ Diff are available at http://planet.openstreetmap.org/replication for anyone to 
 Installation
 ============
 
+Method 1
+--------
 * Download the zip.
-* Unpack the zip somewhere
-* Navigate to somewhere
-* `$python setup.py install`
+* Unpack the zip somewhere.
+* Navigate to somewhere.
+* `$python setup.py install`.
+
+Method 2
+--------
+`$pip install git+https://github.com/ethan-nelson/osm_diff_tool.git`
 
 Usage
 =====
