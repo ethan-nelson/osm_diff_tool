@@ -7,5 +7,6 @@ setup(name='OpenStreetMap Diff Tool',
       author='Ethan Nelson',
       author_email='ethan-nelson@users.noreply.github.com',
       packages=['osmdt'],
+      install_requires = ['requests'],
       zip_safe=False)
       
