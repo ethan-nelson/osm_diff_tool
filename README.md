@@ -43,7 +43,19 @@ data_object = osmdt.process(data_stream)  # Parse the data stream
 changesets = osmdt.extract_changesets(data_object) # Extract changeset information
 users = osmdt.extract_users(data_object) # Extract user information
 objects = osmdt.extract_objects(data_object) # Extract object information
+```
 
+or
+
+```
+import osmdt
+
+changests, objects, users = osmdt.run('25866')
+```
+
+To then aggregate information about all the users from the file, continue with:
+
+```
 user_info = {}
 for user in users.iteritems():
     user_info[user] = osmdt.user_lookup(user['uid'])  # Retrieves user information 
