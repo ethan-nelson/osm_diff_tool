@@ -60,9 +60,3 @@ user_info = {}
 for user in users.iteritems():
     user_info[user] = osmdt.user_lookup(user['uid'])  # Retrieves user information 
 ```
-
-License
-=======
-unlicense.org
-
-Based on [osm-stream-process](http://github.com/iandees/osm-stream-process). See also [osm-stream](http://github.com/osmlab/osm-stream).
