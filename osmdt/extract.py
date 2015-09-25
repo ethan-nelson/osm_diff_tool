@@ -66,6 +66,10 @@ def extract_objects(objects):
         for key in item["tags"]:
             first["tags"][key] = item["tags"][key]
 
+        if axis[0] == 'n':
+            first["lat"] = item["lat"]
+            first["lon"] = item["lon"]
+
         collation[axis] = first
 
     object_collation = {}
