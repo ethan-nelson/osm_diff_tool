@@ -30,8 +30,6 @@ Calls right now include:
 * `osmdt.extract_changesets` to extract changesets and their properties from the processed data. Input: parsed data. Output: dictionary of changesets.
 * `osmdt.extract_objects` to extract objects and their properties from the processed data. Input: parsed data. Output: dictionary of objects.
 * `osmdt.extract_users` to extract users and their properties from the process data. Input: parsed data. Output: dictionary of users.
-* `osmdt.changeset_lookup` to look up more information about a changeset from the OSM API. Input: changeset number. Output: instance of changeset data.
-* `osmdt.user_lookup` to look up more information about a user from the OSM API. Input: user id number. Output: instance of user data.
 
 Example call sequence:
 
@@ -51,12 +49,4 @@ or
 import osmdt
 
 changests, objects, users = osmdt.run('25866')
-```
-
-To then aggregate information about all the users from the file, continue with:
-
-```
-user_info = {}
-for user in users.iteritems():
-    user_info[user] = osmdt.user_lookup(user['uid'])  # Retrieves user information 
 ```
