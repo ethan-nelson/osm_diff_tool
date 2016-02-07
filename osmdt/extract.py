@@ -1,5 +1,18 @@
 def _collate_data(collation, first_axis, second_axis):
     """
+    Collects information about the number of edit actions belonging to keys in
+    a supplied dictionary of object or changeset ids.
+
+    Parameters
+    ----------
+    collation : dict
+        A dictionary of OpenStreetMap object or changeset ids.
+
+    first_axis : string
+        An object or changeset key for the collation to be performed on.
+
+    second_axis : {'create','modify','delete'}
+        An action key to be added to the first_axis key.
     """
     if first_axis not in collation:
         collation[first_axis] = {}
@@ -16,6 +29,20 @@ def _collate_data(collation, first_axis, second_axis):
 
 def extract_changesets(objects):
     """
+    Provides information about each changeset present in an OpenStreetMap diff
+    file.
+
+    Parameters
+    ----------
+    objects : osc_decoder class
+        A class containing OpenStreetMap object dictionaries.
+
+    Returns
+    -------
+    changeset_collation : dict
+        A dictionary of dictionaries with each changeset as a separate key,
+        information about each changeset as attributes in that dictionary,
+        and the actions performed in the changeset as keys.
     """
     def add_changeset_info(collation, axis, item):
         """

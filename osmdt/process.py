@@ -1,5 +1,19 @@
 def process(data_stream):
     """
+    Process a diff file stream into a class with objects separated.
+
+    Parameters
+    ----------
+    data_stream : class
+        A file-like class containing a decompressed diff file data stream.
+
+    Returns
+    -------
+    data_object : osc_decoder class
+        A class containing attribute dictionaries for each OpenStreetMap
+        object type, namely .nodes, .relations, and .ways. Relations 
+        that contain nodes not modified and therefore not included in
+        the diff file are listed in .missingNds.
     """
     import xml.etree.cElementTree as ElementTree
 
