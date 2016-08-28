@@ -52,6 +52,7 @@ def extract_changesets(objects):
 
         first = collation[axis]
 
+        first["id"] = axis
         first["username"] = item["username"]
         first["uid"] = item["uid"]
         first["timestamp"] = item["timestamp"]
@@ -84,6 +85,7 @@ def extract_objects(objects):
 
         first = collation[axis]
 
+        first["id"] = axis
         first["username"] = item["username"]
         first["uid"] = item["uid"]
         first["timestamp"] = item["timestamp"]
