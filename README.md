@@ -1,9 +1,9 @@
 OpenStreetMap Diff Tool
 ==========================
 
-This module is an analysis tool for use with [OpenStreetMap diff files (`*.osc`)](http://wiki.openstreetmap.org/wiki/Planet.osm/diffs).
+This module is an analysis tool for use with [OpenStreetMap diff files (`*.osc`)](https://wiki.openstreetmap.org/wiki/Planet.osm/diffs).
 
-Diff are available at http://planet.openstreetmap.org/replication for anyone to download in minutely, hourly, or daily segments.
+Diff are available at https://planet.openstreetmap.org/replication for anyone to download in minutely, hourly, or daily segments.
 
 Installation
 ============

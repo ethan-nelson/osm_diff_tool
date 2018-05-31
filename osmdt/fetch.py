@@ -7,12 +7,12 @@ def fetch(sequence, time='hour'):
     sequence : string or integer
         Diff file sequence desired. Maximum of 9 characters allowed. The value
         should follow the two directory and file name structure from the site,
-        e.g. http://planet.osm.org/replication/hour/NNN/NNN/NNN.osc.gz (with
+        e.g. https://planet.osm.org/replication/hour/NNN/NNN/NNN.osc.gz (with
         leading zeros optional).
 
     time : {'minute', 'hour', or 'day'}, optional
         Denotes the diff file time granulation to be downloaded. The value
-        must be a valid directory at http://planet.osm.org/replication/.
+        must be a valid directory at https://planet.osm.org/replication/.
 
     Returns
     -------
@@ -29,7 +29,7 @@ def fetch(sequence, time='hour'):
         raise ValueError('The supplied type of replication file does not exist.')
 
     sqn = str(sequence).zfill(9)
-    url = "http://planet.osm.org/replication/%s/%s/%s/%s.osc.gz" %\
+    url = "https://planet.osm.org/replication/%s/%s/%s/%s.osc.gz" %\
           (time, sqn[0:3], sqn[3:6], sqn[6:9])
     content = requests.get(url)
 
