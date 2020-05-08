@@ -25,8 +25,8 @@ def fetch(sequence, time='hour'):
     import gzip
     import requests
 
-    if time not in ['minute','hour','day']:
-        raise ValueError('The supplied type of replication file does not exist.')
+    if time not in ['minute', 'hour', 'day']:
+        raise ValueError('Supplied replication file time type does not exist.')
 
     sqn = str(sequence).zfill(9)
     url = "https://planet.osm.org/replication/%s/%s/%s/%s.osc.gz" %\
@@ -35,7 +35,11 @@ def fetch(sequence, time='hour'):
 
     if content.status_code == 404:
         raise EnvironmentError('Diff file cannot be found.')
-    
+    elif content.status_code == 403:
+        raise EnvironmentError('Access forbidden. You may be rate limited.')
+    elif content.status_code != 200:
+        raise EnvironmentError('HTTP error: %i' % (content.status_code,))
+
     content = StringIO.StringIO(content.content)
     data_stream = gzip.GzipFile(fileobj=content)
 
