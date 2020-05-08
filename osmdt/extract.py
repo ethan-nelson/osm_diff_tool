@@ -62,14 +62,28 @@ def extract_changesets(objects):
     changeset_collation = {}
 
     for node in objects.nodes.values():
-        _collate_data(changeset_collation, node['changeset'], node['action'])
-        add_changeset_info(changeset_collation, node['changeset'], node)
+        _collate_data(changeset_collation,
+                      node['changeset'],
+                      node['action'])
+        add_changeset_info(changeset_collation,
+                           node['changeset'],
+                           node)
+
     for way in objects.ways.values():
-        _collate_data(changeset_collation, way['changeset'], way['action'])
-        add_changeset_info(changeset_collation, way['changeset'], way)
+        _collate_data(changeset_collation,
+                      way['changeset'],
+                      way['action'])
+        add_changeset_info(changeset_collation,
+                           way['changeset'],
+                           way)
+
     for relation in objects.relations.values():
-        _collate_data(changeset_collation, relation['changeset'], relation['action'])
-        add_changeset_info(changeset_collation, relation['changeset'], relation)
+        _collate_data(changeset_collation,
+                      relation['changeset'],
+                      relation['action'])
+        add_changeset_info(changeset_collation,
+                           relation['changeset'],
+                           relation)
 
     return changeset_collation
 
@@ -104,14 +118,26 @@ def extract_objects(objects):
     object_collation = {}
 
     for node in objects.nodes.values():
-        _collate_data(object_collation, 'n'+str(node['id']), node['action'])
-        add_object_info(object_collation, 'n'+str(node['id']), node)
+        _collate_data(object_collation,
+                      'n'+str(node['id']),
+                      node['action'])
+        add_object_info(object_collation,
+                        'n'+str(node['id']),
+                        node)
     for way in objects.ways.values():
-        _collate_data(object_collation, 'w'+str(way['id']), way['action'])
-        add_object_info(object_collation, 'w'+str(way['id']), way)
+        _collate_data(object_collation,
+                      'w'+str(way['id']),
+                      way['action'])
+        add_object_info(object_collation,
+                        'w'+str(way['id']),
+                        way)
     for relation in objects.relations.values():
-        _collate_data(object_collation, 'r'+str(relation['id']), relation['action'])
-        add_object_info(object_collation, 'r'+str(relation['id']), relation)
+        _collate_data(object_collation,
+                      'r'+str(relation['id']),
+                      relation['action'])
+        add_object_info(object_collation,
+                        'r'+str(relation['id']),
+                        relation)
 
     return object_collation
 
