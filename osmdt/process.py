@@ -11,7 +11,7 @@ def process(data_stream):
     -------
     data_object : osc_decoder class
         A class containing attribute dictionaries for each OpenStreetMap
-        object type, namely .nodes, .relations, and .ways. Relations 
+        object type, namely .nodes, .relations, and .ways. Relations
         that contain nodes not modified and therefore not included in
         the diff file are listed in .missingNds.
     """
