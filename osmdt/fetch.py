@@ -21,8 +21,8 @@ def fetch(sequence, time='hour'):
         fetched diff file in string format.
 
     """
-    import StringIO
     import gzip
+    from io import BytesIO
     import requests
 
     if time not in ['minute', 'hour', 'day']:
@@ -31,16 +31,16 @@ def fetch(sequence, time='hour'):
     sqn = str(sequence).zfill(9)
     url = "https://planet.osm.org/replication/%s/%s/%s/%s.osc.gz" %\
           (time, sqn[0:3], sqn[3:6], sqn[6:9])
-    content = requests.get(url)
+    response = requests.get(url)
 
-    if content.status_code == 404:
+    if response.status_code == 404:
         raise EnvironmentError('Diff file cannot be found.')
-    elif content.status_code == 403:
+    elif response.status_code == 403:
         raise EnvironmentError('Access forbidden. You may be rate limited.')
-    elif content.status_code != 200:
-        raise EnvironmentError('HTTP error: %i' % (content.status_code,))
+    elif response.status_code != 200:
+        raise EnvironmentError('HTTP error: %i' % (response.status_code,))
 
-    content = StringIO.StringIO(content.content)
+    content = BytesIO(response.content)
     data_stream = gzip.GzipFile(fileobj=content)
 
     return data_stream
