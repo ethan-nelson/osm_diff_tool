@@ -10,12 +10,16 @@ Installation
 
 Method 1
 --------
+* `$pip install osm_diff_tool`
+
+Method 2
+--------
 * Download the zip.
 * Unpack the zip somewhere.
 * Navigate to somewhere.
 * `$python setup.py install`.
 
-Method 2
+Method 3
 --------
 `$pip install git+https://github.com/ethan-nelson/osm_diff_tool.git`
 
