@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='osm_diff_tool',
-    version='1.0.4',
+    version='1.1.0',
     description='Tool for retrieving OpenStreetMap planet diffs' +
                 ' and extracting data.',
     url='http://github.com/ethan-nelson/osm_diff_tool',
